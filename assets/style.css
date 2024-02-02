@@ -1,6 +1,5 @@
 html {
     font-size: 62.5;
-    box-sizing: border-box;
 } 
 
 body {
@@ -25,22 +24,56 @@ li {
 }
 
 .form__container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
 
-    & > label {
-        margin-top: 1.5rem;
-        margin-bottom: 0.3rem
-    };
+    & div {
+        display: flex;
+        flex-direction: column;
+    }
 
-    & > input { 
-        padding: 5px;
-        font-size: 16px;
-        border: 1px solid #7a7a7a;
+    & .cpf__container, .usuario__container {
+        grid-column: span 2;
     }
 }
+
+label {
+    margin-top: 1.5rem;
+    margin-bottom: 0.3rem
+};
+
+input { 
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #7a7a7a;
+}
+
 
 input:focus {
     border: 1px solid #000000;
     outline: none;
+}
+
+.send-button__container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 2rem;
+}
+
+#send-button {
+    background-color: #3e4c9b;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    width: 9rem;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.03);
+    }
 }
