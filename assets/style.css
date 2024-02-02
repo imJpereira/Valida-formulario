@@ -1,0 +1,46 @@
+html {
+    font-size: 62.5;
+    box-sizing: border-box;
+} 
+
+body {
+    background-color: #cfcfcf;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.main__container {
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 50rem;
+    border-radius: 10px;
+}
+
+li {
+    padding: 0.2rem;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+
+    & > label {
+        margin-top: 1.5rem;
+        margin-bottom: 0.3rem
+    };
+
+    & > input { 
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #7a7a7a;
+    }
+}
+
+input:focus {
+    border: 1px solid #000000;
+    outline: none;
+}
