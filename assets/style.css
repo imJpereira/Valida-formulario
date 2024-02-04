@@ -43,10 +43,13 @@ label {
 input {
     font-size: 18px;
     padding: 0.5rem 0.3rem;
+    background-color: #d6d6d6f8;
+    border: none;
+    border-bottom: solid 1px #000;
+    border-radius: 4px;
 }
 
 input:focus {
-    border: 2px solid rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
