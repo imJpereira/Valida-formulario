@@ -1,7 +1,7 @@
 class User {
-    constructor(name, postname, cpf, user, password, repeatPassword) {
+    constructor(name, surname, cpf, user, password, repeatPassword) {
         this.name = name,
-        this.postname = postname,
+        this.surname = surname,
         this.cpf = cpf,
         this.user = user,
         this.password = password,
@@ -17,12 +17,30 @@ class User {
     }
 
     blank() {
-        //fazer um for no objeto
-
-        if(!(this.name && this.postname && this.cpf && this.user)) {
-            console.log('Os campos não podem estar em branco');
-            return; 
+        const array = [this.name, this.surname, this.cpf, this.user, this.password, this.repeatPassword];
+        
+        for (let i = 0; i < array.length; i++) {
+            const obj = array[i];
+            const element = document.getElementById(`${i}-element`);
+            
+            if (obj === '') {
+                
+                const existingSpan = element.querySelector('.error-message');
+                
+                if (!existingSpan) {
+                    const newSpan = document.createElement('span');
+                    newSpan.innerText = 'Este campo não pode estar em branco';
+                    newSpan.className = 'error-message';
+                    element.appendChild(newSpan);
+                }
+            }  else {
+                const existingSpan = element.querySelector('.error-message');
+                if (existingSpan) {
+                    existingSpan.remove();
+                }
+            }
         }
+        return;
     }
 
     checkCPF() {
@@ -125,13 +143,13 @@ const sendButton = document.getElementById("send-button");
 
 sendButton.addEventListener('click', () => {
     const name = document.getElementById("name").value;
-    const postname = document.getElementById("postname").value;
+    const surname = document.getElementById("surname").value;
     const cpf = document.getElementById("cpf").value;
     const user = document.getElementById("user").value;
     const password = document.getElementById("password").value;
     const repeatPassword = document.getElementById("repeat-password").value;
 
-    const user1 = new User(name, postname, cpf, user, password, repeatPassword);
+    const user1 = new User(name, surname, cpf, user, password, repeatPassword);
     user1.validateForm();
 
 })
