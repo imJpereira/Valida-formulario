@@ -1,12 +1,22 @@
 html {
-    font-size: 62.5;
     box-sizing: border-box;
+    
 } 
 
 body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background-color: #0e1853;
+    -moz-box-shadow:    inset  0  300px 300px -300px hsla(0,0%,0%,.8), 
+                          inset  0 -300px 300px -300px hsla(0,0%,0%,.8);
+    -webkit-box-shadow: inset  0  300px 300px -300px hsla(0,0%,0%,.8), 
+                          inset  0 -300px 300px -300px hsla(0,0%,0%,.8);
+    box-shadow:        inset  0  300px 300px -300px hsla(0,0%,0%,.8), 
+                          inset  0 -300px 300px -300px hsla(0,0%,0%,.8);
     font-family: sans-serif;
     margin: 0;
+    
 }
 
 .main__container {
@@ -29,6 +39,7 @@ body {
     & .form-content {
         display: flex;
         flex-direction: column;
+        border-radius: 4px;
     }
 }
 
@@ -36,22 +47,39 @@ body {
     grid-column: span 2;
 }
 
-label {
-    margin-bottom: 0.3rem;
-}
 
 input {
+    background-color: #e5e8ecf8;
     font-size: 18px;
-    padding: 0.5rem 0.3rem;
-    background-color: #d6d6d6f8;
+    padding: 1rem;
     border: none;
-    border-bottom: solid 1px #000;
     border-radius: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s ease-in-out;
+    outline: none;
 }
 
 input:focus {
-    outline: none;
+    border-bottom: solid 2px #000;
 }
+
+.password {
+    display: flex;
+    align-items: center;
+
+    & .show-hide-button__container {
+        margin: auto;
+
+        & .show-hide-button {
+            border: none;
+            background-color: transparent;
+            font-size: 24px;
+            color: #8a8a8a;
+            cursor: pointer;
+        }
+    }
+}
+
 
 .send-button__container {
     display: flex;
@@ -75,4 +103,11 @@ input:focus {
     &:hover {
         background-color: rgb(25, 110, 255);
     }
+}
+
+.error-message {
+    margin-top: 0.3rem;
+    color: #d30000;
+    font-size: 13px;
+    background-color: #fff;
 }

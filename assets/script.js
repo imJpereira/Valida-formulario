@@ -1,7 +1,7 @@
 class User {
-    constructor(name, postname, cpf, user, password, repeatPassword) {
+    constructor(name, surname, cpf, user, password, repeatPassword) {
         this.name = name,
-        this.postname = postname,
+        this.surname = surname,
         this.cpf = cpf,
         this.user = user,
         this.password = password,
@@ -10,47 +10,90 @@ class User {
 
     validateForm() {
         this.blank();
+        this.checkNameAndSurname();
         this.checkCPF();
         this.checkUser();
         this.checkPassword();
 
     }
-
+    
+    innerErrorMessage(element, mensagem) {
+        const existingSpan = element.querySelector('.error-message');
+        
+        if (!existingSpan) {
+            const newSpan = document.createElement('span');
+            newSpan.textContent = '*' + mensagem;
+            newSpan.className = 'error-message';
+            element.appendChild(newSpan);
+        }  
+    }
+    
+    removeErrorMessage(element) {
+        const existingSpan = element.querySelector('.error-message');
+        if (existingSpan) {
+            existingSpan.remove();
+        }
+    }
+    
     blank() {
-        //fazer um for no objeto
+        const array = [this.name, this.surname, this.cpf, this.user, this.password, this.repeatPassword];
+        
+        for (let i = 0; i < array.length; i++) {
+            const obj = array[i];
+            const element = document.getElementById(`${i}-element`);
+            
+            if (obj === '') {
+                this.innerErrorMessage(element, 'Esse campo não pode estar em branco');   
+            } else {
+                this.removeErrorMessage(element);
+            }
+        }
+    }
+    
+    checkNameAndSurname() {
+        const nameContainer = document.getElementById('0-element');
+        if (/[^a-zA-Z\u00C0-\u017F\s]/.test(this.name) || this.name.trim() === '') {
+            this.innerErrorMessage(nameContainer, 'Nome inválido');
+        } 
 
-        if(!(this.name && this.postname && this.cpf && this.user)) {
-            console.log('Os campos não podem estar em branco');
-            return; 
+        const surnameContainer = document.getElementById('1-element');
+        if (/[^a-zA-Z\u00C0-\u017F\s]/.test(this.surname) || this.surname.trim() === '') {
+            this.innerErrorMessage(surnameContainer, 'Sobrenome inválido');
         }
     }
 
     checkCPF() {
         const cpf = new Cpf(this.cpf);
+        const cpfContainer = document.getElementById('2-element');
         
         if(!(cpf.validateCpf())) {
-            console.log('CPF inválido');
+            this.innerErrorMessage(cpfContainer, 'CPF inválido');
         } 
     }
 
 
     checkUser() {
+        const userContainer = document.getElementById('3-element');
+
         if (/[^a-zA-Z0-9]/.test(this.user)) {
-            console.log('O usuário não pode conter caracteres especiais')
-        }
+            this.innerErrorMessage(userContainer, 'O usuário não pode conter caracteres especiais');
+        } 
+
         if (this.user.length < 3 || this.user.length > 12) {
-            console.log('O usuário deve ter entre 3 e 12 caracteres');
-        }
-        return;
+            this.innerErrorMessage(userContainer, 'O usuário deve ter entre 3 e 12 caracteres');
+        } 
     }
 
     checkPassword() {
+        const passwordContainer = document.getElementById('4-element');
+        const repeatPasswordContainer = document.getElementById('5-element');
+        
         if (this.password.length < 6 || this.password.length > 12) {
-            console.log('A senha deve ter entre 6 e 12 caracteres');
+            this.innerErrorMessage(passwordContainer, 'A senha deve ter entre 6 e 12 caracteres');
         }
 
         if (this.password !== this.repeatPassword) {
-            console.log('As senhas não condizem')
+            this.innerErrorMessage(repeatPasswordContainer, 'As senhas não condizem');
         }
 
         return;
@@ -119,19 +162,17 @@ class Cpf extends User{
 }
 
 
-
 const sendButton = document.getElementById("send-button");
-
 
 sendButton.addEventListener('click', () => {
     const name = document.getElementById("name").value;
-    const postname = document.getElementById("postname").value;
+    const surname = document.getElementById("surname").value;
     const cpf = document.getElementById("cpf").value;
     const user = document.getElementById("user").value;
     const password = document.getElementById("password").value;
     const repeatPassword = document.getElementById("repeat-password").value;
-
-    const user1 = new User(name, postname, cpf, user, password, repeatPassword);
+    
+    const user1 = new User(name, surname, cpf, user, password, repeatPassword);
     user1.validateForm();
 
 })
