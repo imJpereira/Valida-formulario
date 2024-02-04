@@ -9,15 +9,13 @@ class User {
     }
 
     validateForm() {
-        (this.blank()) ;
-        (this.checkNameAndSurname()) ;
+        this.blank();
+        this.checkNameAndSurname();
         this.checkCPF();
         this.checkUser();
         this.checkPassword();
 
     }
-
-    
     
     innerErrorMessage(element, mensagem) {
         const existingSpan = element.querySelector('.error-message');
@@ -27,7 +25,7 @@ class User {
             newSpan.textContent = '*' + mensagem;
             newSpan.className = 'error-message';
             element.appendChild(newSpan);
-        } 
+        }  
     }
     
     removeErrorMessage(element) {
@@ -55,7 +53,6 @@ class User {
     checkNameAndSurname() {
         const nameContainer = document.getElementById('0-element');
         if (/[^a-zA-Z\u00C0-\u017F\s]/.test(this.name) || this.name.trim() === '') {
-            const nameContainer = document.getElementById('0-element');
             this.innerErrorMessage(nameContainer, 'Nome inválido');
         } 
 
@@ -165,9 +162,7 @@ class Cpf extends User{
 }
 
 
-
 const sendButton = document.getElementById("send-button");
-
 
 sendButton.addEventListener('click', () => {
     const name = document.getElementById("name").value;
@@ -176,7 +171,7 @@ sendButton.addEventListener('click', () => {
     const user = document.getElementById("user").value;
     const password = document.getElementById("password").value;
     const repeatPassword = document.getElementById("repeat-password").value;
-
+    
     const user1 = new User(name, surname, cpf, user, password, repeatPassword);
     user1.validateForm();
 

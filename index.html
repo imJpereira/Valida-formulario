@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valida formulário</title>
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -31,12 +32,25 @@
             <div class="form-content grid-2-column" id="3-element">
                 <input type="text" name="" id="user" placeholder="Nome do usuário">
             </div>
+
             <div class="form-content" id="4-element">
-                <input type="password" name="" id="password" placeholder="Senha">
+                <div class="password">
+                    <input type="password" name="" id="password" placeholder="Senha">
+                    <div class="show-hide-button__container">
+                        <button class="bi bi-eye show-hide-button"></button>
+                    </div>
+                </div>
             </div>
+
             <div class="form-content" id="5-element">
-                <input type="password" name="" id="repeat-password" placeholder="Repetir senha">
+                <div class="password"> 
+                    <input type="password" name="" id="repeat-password" placeholder="Repetir senha">
+                    <div class="show-hide-button__container">
+                        <button class="bi bi-eye show-hide-button"></button>
+                    </div>
+                </div>
             </div>
+
         </form>
         <div class="send-button__container">
             <button id="send-button" >Enviar</button>
