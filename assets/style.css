@@ -36,22 +36,21 @@ body {
     grid-column: span 2;
 }
 
-label {
-    margin-bottom: 0.3rem;
-}
-
 input {
+    background-color: #e5e8ecf8;
     font-size: 18px;
-    padding: 0.5rem 0.3rem;
-    background-color: #d6d6d6f8;
+    padding: 1rem;
     border: none;
-    border-bottom: solid 1px #000;
+    border-bottom: 1px solid transparent;
     border-radius: 4px;
+    transition: border-bottom 0.2s ease-in-out;
+    outline: none;
 }
 
 input:focus {
-    outline: none;
+    border-bottom: solid 1px #000;
 }
+
 
 .send-button__container {
     display: flex;
