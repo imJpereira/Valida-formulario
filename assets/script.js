@@ -9,13 +9,22 @@ class User {
     }
 
     validateForm() {
-        this.blank();
-        this.checkNameAndSurname();
-        this.checkCPF();
-        this.checkUser();
-        this.checkPassword();
+        let valid = !!(
+            this.blank() &
+            this.checkNameAndSurname() &
+            this.checkCPF() &
+            this.checkUser() &
+            this.checkPassword()
+        );
 
+        if (valid) {
+            const allSpans = document.querySelectorAll('.error-message');
+            allSpans.forEach(span => span.remove());
+        }
+
+        return valid;
     }
+    
     
     innerErrorMessage(element, mensagem) {
         const existingSpan = element.querySelector('.error-message');
@@ -38,28 +47,40 @@ class User {
     blank() {
         const array = [this.name, this.surname, this.cpf, this.user, this.password, this.repeatPassword];
         
-        for (let i = 0; i < array.length; i++) {
-            const obj = array[i];
-            const element = document.getElementById(`${i}-element`);
-            
-            if (obj === '') {
-                this.innerErrorMessage(element, 'Esse campo não pode estar em branco');   
-            } else {
-                this.removeErrorMessage(element);
+        if (!this.name || !this.surname || !this.cpf || !this.user || !this.password || !this.repeatPassword) {
+
+            for (let i = 0; i < array.length; i++) {
+                const obj = array[i];
+                const element = document.getElementById(`${i}-element`);
+                
+                if (!obj) {
+                    this.innerErrorMessage(element, 'Esse campo não pode estar em branco');   
+                } else {
+                    this.removeErrorMessage(element);
+                }
             }
-        }
+
+            return false;
+        } 
+        return true;
     }
     
     checkNameAndSurname() {
+        let valid = false;
+
         const nameContainer = document.getElementById('0-element');
         if (/[^a-zA-Z\u00C0-\u017F\s]/.test(this.name) || this.name.trim() === '') {
             this.innerErrorMessage(nameContainer, 'Nome inválido');
-        } 
+            valid = false;
+        } else valid = true;
 
         const surnameContainer = document.getElementById('1-element');
         if (/[^a-zA-Z\u00C0-\u017F\s]/.test(this.surname) || this.surname.trim() === '') {
             this.innerErrorMessage(surnameContainer, 'Sobrenome inválido');
-        }
+            valid = false;
+        } else return true;
+        
+        return valid;
     }
 
     checkCPF() {
@@ -68,35 +89,45 @@ class User {
         
         if(!(cpf.validateCpf())) {
             this.innerErrorMessage(cpfContainer, 'CPF inválido');
+            return false;
         } 
+        return true;
     }
 
 
     checkUser() {
         const userContainer = document.getElementById('3-element');
+        let valid = false
 
         if (/[^a-zA-Z0-9]/.test(this.user)) {
             this.innerErrorMessage(userContainer, 'O usuário não pode conter caracteres especiais');
-        } 
+            valid = false
+        } else valid = true;
 
         if (this.user.length < 3 || this.user.length > 12) {
             this.innerErrorMessage(userContainer, 'O usuário deve ter entre 3 e 12 caracteres');
-        } 
+            valid = false
+        } else valid = true;
+
+        return valid;
     }
 
     checkPassword() {
         const passwordContainer = document.getElementById('4-element');
         const repeatPasswordContainer = document.getElementById('5-element');
+        let valid = false;
         
         if (this.password.length < 6 || this.password.length > 12) {
             this.innerErrorMessage(passwordContainer, 'A senha deve ter entre 6 e 12 caracteres');
-        }
+            valid = false;
+        } else valid = true;
 
         if (this.password !== this.repeatPassword) {
             this.innerErrorMessage(repeatPasswordContainer, 'As senhas não condizem');
-        }
+            valid = false;
+        } else valid = true;
 
-        return;
+        return valid;
     }
 
     
@@ -161,19 +192,29 @@ class Cpf extends User{
     }   
 }
 
-
 const sendButton = document.getElementById("send-button");
+const showHideButton = document.querySelectorAll('.show-hide');
+
+const nameInput = document.getElementById("name");
+const surname = document.getElementById("surname");
+const cpf = document.getElementById("cpf");
+const user = document.getElementById("user");
+const password = document.getElementById("password");
+const repeatPassword = document.getElementById("repeat-password");
+
+function showPassword() {
+    if (password.type === 'password') {
+        password.setAttribute('type', 'text');
+        repeatPassword.setAttribute('type', 'text');
+    }  else {
+        password.setAttribute('type', 'password');
+        repeatPassword.setAttribute('type', 'password');
+    }
+}
 
 sendButton.addEventListener('click', () => {
-    const name = document.getElementById("name").value;
-    const surname = document.getElementById("surname").value;
-    const cpf = document.getElementById("cpf").value;
-    const user = document.getElementById("user").value;
-    const password = document.getElementById("password").value;
-    const repeatPassword = document.getElementById("repeat-password").value;
+    const user1 = new User(nameInput.value, surname.value, cpf.value, user.value, password.value, repeatPassword.value);
+    console.log(user1.validateForm());
     
-    const user1 = new User(name, surname, cpf, user, password, repeatPassword);
-    user1.validateForm();
-
 })
 
