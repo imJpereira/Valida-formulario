@@ -19,6 +19,10 @@ body {
     
 }
 
+li {
+    padding: 0.2rem 0;
+}
+
 .main__container {
     background: #fff;
     position: absolute;
@@ -130,7 +134,7 @@ input:focus {
     height: 10rem;
     background-color: #ffffff;
     border-radius: 30px;
-    box-shadow: 0 0 10px 1px #2b7235;
+    box-shadow: 0 0 10px 2px #2b7235;
 
     & h1 {
         font-size: 25px;
