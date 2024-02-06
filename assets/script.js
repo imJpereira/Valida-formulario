@@ -23,8 +23,7 @@ class User {
         }
 
         return valid;
-    }
-    
+    }  
     
     innerErrorMessage(element, mensagem) {
         const existingSpan = element.querySelector('.error-message');
@@ -59,7 +58,6 @@ class User {
                     this.removeErrorMessage(element);
                 }
             }
-
             return false;
         } 
         return true;
@@ -93,7 +91,6 @@ class User {
         } 
         return true;
     }
-
 
     checkUser() {
         const userContainer = document.getElementById('3-element');
@@ -129,8 +126,6 @@ class User {
 
         return valid;
     }
-
-    
 }
 
 class Cpf extends User{
@@ -202,19 +197,27 @@ const user = document.getElementById("user");
 const password = document.getElementById("password");
 const repeatPassword = document.getElementById("repeat-password");
 
-function showPassword() {
+showPassword = () => {
     if (password.type === 'password') {
         password.setAttribute('type', 'text');
         repeatPassword.setAttribute('type', 'text');
+        showHideButton.forEach(button => {
+            button.classList.replace('bi-eye-slash', 'bi-eye');
+        })
     }  else {
         password.setAttribute('type', 'password');
         repeatPassword.setAttribute('type', 'password');
+        showHideButton.forEach(button => {
+            button.classList.replace('bi-eye', 'bi-eye-slash');
+        })
     }
 }
 
 sendButton.addEventListener('click', () => {
     const user1 = new User(nameInput.value, surname.value, cpf.value, user.value, password.value, repeatPassword.value);
-    console.log(user1.validateForm());
+    const itsValid = user1.validateForm();    
     
+    if (itsValid) {
+        alert('Obrigado por preencher o formulário.')
+    }
 })
-
