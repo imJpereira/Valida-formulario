@@ -215,9 +215,29 @@ showPassword = () => {
 
 sendButton.addEventListener('click', () => {
     const user1 = new User(nameInput.value, surname.value, cpf.value, user.value, password.value, repeatPassword.value);
-    const itsValid = user1.validateForm();    
+    const itsValid = user1.validateForm();
+    const inputs = document.querySelectorAll('.input')
     
     if (itsValid) {
-        alert('Obrigado por preencher o formulário.')
+        console.log('válido');
+
+        const instructionsDiv = document.getElementById('instructions');
+        instructionsDiv.remove();
+        sendButton.remove();
+
+        const infoContainer = document.getElementById('info-container');
+
+        const validMessage = document.createElement('div');
+        validMessage.classList.add('valid-message');
+
+        const newH1 = document.createElement('h1');  
+        newH1.textContent = 'Formulário enviado com sucesso.'
+
+        inputs.forEach(input => {
+            input.readOnly = true;
+            input.style.border = 'none';
+        })
+        infoContainer.appendChild(validMessage);
+        validMessage.appendChild(newH1);
     }
-})
+});
