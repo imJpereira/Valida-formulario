@@ -20,40 +20,36 @@
             </ul>
         </div>
         <form class="form__container" action="">
-            <div class="form-content" id="0-element">
-                 <input type="text" name="" id="name" placeholder="Nome">
+            <div class="form-content " id="0-element">
+                 <input type="text" name="name" id="name" placeholder="Nome">
              </div>
             <div class="form-content" id="1-element">
-                <input type="text" name="" id="surname" placeholder="Sobrenome">
+                <input type="text" name="surname" id="surname" placeholder="Sobrenome">
             </div>
             <div class="form-content grid-2-column" id="2-element">
-                <input type="text" name="" id="cpf" placeholder="CPF">
+                <input type="text" name="cpf" id="cpf" placeholder="CPF">
             </div>
             <div class="form-content grid-2-column" id="3-element">
-                <input type="text" name="" id="user" placeholder="Nome do usuário">
+                <input type="text" name="username" id="user" placeholder="Nome do usuário">
             </div>
 
             <div class="form-content" id="4-element">
                 <div class="password">
-                    <input type="password" name="" id="password" placeholder="Senha">
-                    <div class="show-hide-button__container">
-                        <button class="bi bi-eye show-hide-button"></button>
-                    </div>
+                    <input type="password" maxlength="30" name="password" id="password" placeholder="Senha">
+                    <i class="bi bi-eye show-hide" onclick="showPassword()"></i>
                 </div>
             </div>
 
             <div class="form-content" id="5-element">
                 <div class="password"> 
-                    <input type="password" name="" id="repeat-password" placeholder="Repetir senha">
-                    <div class="show-hide-button__container">
-                        <button class="bi bi-eye show-hide-button"></button>
-                    </div>
+                    <input type="password" maxlength="30" name="repeat-password" id="repeat-password" placeholder="Repetir senha">
+                    <i class="bi bi-eye show-hide" onclick="showPassword()"></i>
                 </div>
             </div>
 
         </form>
         <div class="send-button__container">
-            <button id="send-button" >Enviar</button>
+            <button type="submit" id="send-button" >Enviar</button>
         </div>
     </div>
     

@@ -64,21 +64,29 @@ input:focus {
 }
 
 .password {
-    display: flex;
-    align-items: center;
+    position: relative;
 
-    & .show-hide-button__container {
-        margin: auto;
-
-        & .show-hide-button {
-            border: none;
-            background-color: transparent;
-            font-size: 24px;
-            color: #8a8a8a;
-            cursor: pointer;
-        }
+    & input {
+        width: 89%;
     }
 }
+
+.show-hide {
+    position: absolute;
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: #8a8a8a;
+    cursor: pointer;
+
+    &:hover {
+        color: #535353;
+    }
+}
+
 
 
 .send-button__container {
@@ -111,3 +119,5 @@ input:focus {
     font-size: 13px;
     background-color: #fff;
 }
+
+
