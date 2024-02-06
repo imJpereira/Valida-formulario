@@ -10,40 +10,42 @@
 <body>
 
     <div class="main__container">
-        <div>
-            <h1>Preencha o formulário</h1>
-            <ul>
-                <li>Nenhum campo pode estar vazio</li>
-                <li>Usário só poderá conter letras e/ou números</li>
-                <li>Usuário deverá ter entre 3 e 12 caracteres</li>
-                <li>Senha precisa ter entre 6 e 12 caracteres</li>
-            </ul>
+        <div id="info-container">
+            <div id="instructions">
+                <h1>Preencha o formulário</h1>
+                <ul>
+                    <li>Nenhum campo pode estar vazio</li>
+                    <li>Usário só poderá conter letras e/ou números</li>
+                    <li>Usuário deverá ter entre 3 e 12 caracteres</li>
+                    <li>Senha precisa ter entre 6 e 12 caracteres</li>
+                </ul>
+            </div>
         </div>
         <form class="form__container" action="">
             <div class="form-content " id="0-element">
-                 <input type="text" name="name" id="name" placeholder="Nome">
+                 <input class="input" type="text" name="name" id="name" placeholder="Nome">
              </div>
             <div class="form-content" id="1-element">
-                <input type="text" name="surname" id="surname" placeholder="Sobrenome">
+                <input class="input" type="text" name="surname" id="surname" placeholder="Sobrenome">
             </div>
             <div class="form-content grid-2-column" id="2-element">
-                <input type="text" name="cpf" id="cpf" placeholder="CPF">
+                <input class="input" type="text" name="cpf" id="cpf" placeholder="CPF">
             </div>
             <div class="form-content grid-2-column" id="3-element">
-                <input type="text" name="username" id="user" placeholder="Nome do usuário">
+                <input class="input" type="text" name="username" id="user" placeholder="Nome do usuário">
             </div>
 
             <div class="form-content" id="4-element">
                 <div class="password">
-                    <input type="password" maxlength="30" name="password" id="password" placeholder="Senha">
-                    <i class="bi bi-eye show-hide" onclick="showPassword()"></i>
+                    <input class="input" type="password" maxlength="30" name="password" id="password" placeholder="Senha">
+                    <i class="bi-eye-slash show-hide" onclick="showPassword()"></i>
                 </div>
             </div>
 
             <div class="form-content" id="5-element">
                 <div class="password"> 
-                    <input type="password" maxlength="30" name="repeat-password" id="repeat-password" placeholder="Repetir senha">
-                    <i class="bi bi-eye show-hide" onclick="showPassword()"></i>
+                    <input class="input" type="password" maxlength="30" name="repeat-password" id="repeat-password" placeholder="Repetir senha">
+                    <i class="bi-eye-slash show-hide" onclick="showPassword()"></i>
                 </div>
             </div>
 
